@@ -21,6 +21,10 @@ int vector_new(Vector* vector, size_t size_of_value) {
   return error;
 }
 
+void vector_free(Vector* vector) {
+  free(vector->values);
+}
+
 void vector_drop(Vector* vector, void fn(void*)) {
   for (size_t index = 0; index < vector->capacity; index++) {
     void* value = vector->values[index];
@@ -30,7 +34,7 @@ void vector_drop(Vector* vector, void fn(void*)) {
     }
   }
 
-  free(vector->values);
+  vector_free(vector);
 }
 
 int vector_push(Vector* vector, void* value) {
