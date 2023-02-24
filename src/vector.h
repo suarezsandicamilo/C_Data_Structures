@@ -19,9 +19,7 @@ typedef struct Vector {
 
 int vector_new(Vector* vector, size_t size_of_value);
 
-void vector_free(Vector* vector);
-
-void vector_drop(Vector* vector, void fn(void*));
+void vector_drop(Vector* vector);
 
 int vector_push(Vector* vector, void* value);
 

@@ -21,32 +21,16 @@ int vector_new(Vector* vector, size_t size_of_value) {
   return error;
 }
 
-void vector_free(Vector* vector) { free(vector->values); }
-
-void vector_drop(Vector* vector, void fn(void*)) {
-  for (size_t index = 0; index < vector->capacity; index++) {
-    void* value = vector->values[index];
-
-    if (fn != NULL) {
-      fn(value);
-    }
-  }
-
-  vector_free(vector);
+void vector_drop(Vector* vector) {
+  free(vector->values);
 }
 
 int vector_push(Vector* vector, void* value) {
   int error = EXIT_SUCCESS;
 
-  if (vector->size_of_value != sizeof(*value)) {
-    error = EXIT_FAILURE;
-  }
-
-  if (!error) {
-    if (vector->length == vector->capacity) {
-      // TODO:
-      // error = vector_increase_capaciy();
-    }
+  if (vector->length == vector->capacity) {
+    // TODO:
+    // error = vector_increase_capaciy();
   }
 
   if (!error) {
