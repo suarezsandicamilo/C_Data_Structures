@@ -81,3 +81,15 @@ asan: build
 
 tsan: FLAGS += -fsanitize=thread
 tsan: build
+
+tasan: FLAGS += -fsanitize=address
+tasan: test
+
+ttsan: FLAGS += -fsanitize=thread
+ttsan: test
+
+install:
+	sudo apt install cpplint
+
+lint:
+	cpplint $(SRC_FILES) $(TEST_FILES)
